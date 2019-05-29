@@ -22,5 +22,11 @@ tags['tag'].nunique() #38643
 tags['movieId'].nunique() #19545
 # average of 1.97 movies per tag
 
+# k folds cross validation
 
+# hyperparameter optimization
+
+# matrix factorization
+
+# 
 
