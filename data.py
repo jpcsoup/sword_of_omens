@@ -22,11 +22,17 @@ tags['tag'].nunique() #38643
 tags['movieId'].nunique() #19545
 # average of 1.97 movies per tag
 
+# test get_dummies
+movies = pd.read_csv('ml-20m/movies.csv', nrows=1000)
+movies['genres'].get_dummies()
+genres = movies['genres'].apply(lambda x: x.split('|'))
+genres2 = pd.get_dummies(genres)
+
 # k folds cross validation
 
 # hyperparameter optimization
 
 # matrix factorization
 
-# 
+#
 
