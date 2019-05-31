@@ -22,11 +22,16 @@ tags['tag'].nunique() #38643
 tags['movieId'].nunique() #19545
 # average of 1.97 movies per tag
 
-# test get_dummies
-movies = pd.read_csv('ml-20m/movies.csv', nrows=1000)
-movies['genres'].get_dummies()
-genres = movies['genres'].apply(lambda x: x.split('|'))
-genres2 = pd.get_dummies(genres)
+# genre - get_dummies
+
+def dummy_dict(x,sep='|',value=1):
+    x1 = x.split(sep)
+    return dict.fromkeys(x1,value)
+
+genres = movies['genres'].apply(dummy_dict)
+genres = pd.concat([movies[['movieId','title']], pd.DataFrame(genres.tolist()).fillna(0)], axis=1)
+
+genres.shape #(27278, 22)
 
 # k folds cross validation
 
