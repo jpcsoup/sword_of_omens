@@ -33,11 +33,35 @@ genres = pd.concat([movies[['movieId','title']], pd.DataFrame(genres.tolist()).f
 
 genres.shape #(27278, 22)
 
-# k folds cross validation
+# Matrix Factorization
 
-# hyperparameter optimization
+class NMF_l2():
 
-# matrix factorization
+    def __init__(self, R, k, alpha, beta, iter):
+        """
+        Class to perform matrix factorization with L2 regularization for multiple choices of k
+        :param R: Edgelist of interactions [user, item, value]
+        :param k: array of values of k to choose
+        :param alpha: learning rate
+        :param beta: regularization parameter
+        :param iter: number of iterations for each
+        """
 
-#
+        self.R = R
+        self.num_users, self.num_items = R.shape
+        self.k = k
+        self.kn = 0
+        self.alpha = alpha
+        self.beta = beta
+        self.iter = iter
+
+    def train(self):
+        # Initialize matrix
+        self.P = np.random.normal(scale=1./self.k[kn], size=(self.num_users, self.k[kn]))
+        self.Q = np.random.normal(scale=1./self.k[kn], size=(self.num_items, self.k[kn]))
+
+        # Initialize embeddings
+        self.p = np.zeros(self.num_users)
+        self.q = np.zeros(self.num_items)
+        self.r = np.mean(self.R[np.where(self.R != 0)])
 
