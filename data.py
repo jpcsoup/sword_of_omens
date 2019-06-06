@@ -2,6 +2,7 @@
 
 import numpy as np
 import pandas as pd
+from sklearn.model_selection import KFold
 
 gscores = pd.read_csv('ml-20m/genome-scores.csv')
 gtags = pd.read_csv('ml-20m/genome-tags.csv')
@@ -68,3 +69,10 @@ class NmfL2:
         self.q = np.zeros(self.num_items)
         self.r = np.mean(self.R[np.where(self.R != 0)])
 
+
+kf = RepeatedKFold(n_splits=5, n_repeats=10, random_state=None)
+
+for train_index, test_index in kf.split(X):
+      print("Train:", train_index, "Validation:",test_index)
+      X_train, X_test = X[train_index], X[test_index]
+      y_train, y_test = y[train_index], y[test_index]
