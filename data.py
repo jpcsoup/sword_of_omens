@@ -71,8 +71,14 @@ class NmfL2:
 
 
 kf = RepeatedKFold(n_splits=5, n_repeats=10, random_state=None)
+# for each call of the function it would iterate through the k splits
+# if the iteration is less than k it evaluates the functions
+# if the iteration is equal to or greater than k, it doesn't eval and skips to the next step of the function
+
 
 for train_index, test_index in kf.split(X):
       print("Train:", train_index, "Validation:",test_index)
       X_train, X_test = X[train_index], X[test_index]
       y_train, y_test = y[train_index], y[test_index]
+
+# need to apply ALS for the hyperparameter tuning 
