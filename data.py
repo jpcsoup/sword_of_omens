@@ -70,10 +70,20 @@ class NmfL2:
         self.r = np.mean(self.R[np.where(self.R != 0)])
 
 
-kf = RepeatedKFold(n_splits=5, n_repeats=10, random_state=None)
+kf = RepeatedKFold(n_splits=5, n_repeats=10, random_state=None) #generator that gets the indexes for test and train
+
 # for each call of the function it would iterate through the k splits
 # if the iteration is less than k it evaluates the functions
 # if the iteration is equal to or greater than k, it doesn't eval and skips to the next step of the function
+
+subset = ratings.head(1000)
+one = next(kf.split(subset))
+two = next(kf.split(subset))
+three = next(kf.split(subset))
+four = next(kf.split(subset))
+five = next(kf.split(subset))
+six = next(kf.split(subset))
+seven = next(kf.split(subset))
 
 
 for train_index, test_index in kf.split(X):
@@ -81,4 +91,4 @@ for train_index, test_index in kf.split(X):
       X_train, X_test = X[train_index], X[test_index]
       y_train, y_test = y[train_index], y[test_index]
 
-# need to apply ALS for the hyperparameter tuning 
+# need to apply ALS for the hyperparameter tuning
